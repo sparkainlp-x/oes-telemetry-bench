@@ -1,0 +1,35 @@
+cff-version: 1.2.0
+message: "If you use this software, please cite it as below. The bundled demo is SYNTHETIC; it is a software exercise, not field evidence. Do not treat replay metrics as field-performance or superiority claims."
+title: "oes-telemetry-bench: offline replay bench for native synchronized OES32 telemetry frames"
+type: software
+authors:
+  - family-names: "Brisson"
+    given-names: "Jean-François"
+    affiliation: "Spark AI NLP"
+    orcid: "https://orcid.org/0009-0000-9778-5374"
+repository-code: "https://github.com/sparkainlp-x/oes-telemetry-bench"
+url: "https://github.com/sparkainlp-x/oes-telemetry-bench"
+license: AGPL-3.0-only
+version: "0.1.0"
+abstract: >-
+  Offline Python replay and evaluation kit for native synchronized OES32
+  telemetry frames: strict 32-channel contract, frozen thresholds from a
+  separate calibration replay, and a clearly synthetic demo. Companion to
+  OES-Resilience. No field-performance or superiority claims.
+keywords:
+  - telemetry
+  - anomaly detection
+  - benchmark
+  - synthetic data
+  - reproducibility
+  - research software
+  - python
+references:
+  - type: software
+    title: "OES-Resilience: benchmarking telemetry intelligence under real-world stress"
+    authors:
+      - family-names: "Brisson"
+        given-names: "Jean-François"
+        orcid: "https://orcid.org/0009-0000-9778-5374"
+    repository-code: "https://github.com/sparkainlp-x/oes-resilience"
+    doi: "10.5281/zenodo.23071166"

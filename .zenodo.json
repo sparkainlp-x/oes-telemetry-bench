@@ -1,0 +1,47 @@
+{
+  "upload_type": "software",
+  "title": "oes-telemetry-bench: offline replay bench for native synchronized OES32 telemetry frames",
+  "version": "0.1.0",
+  "description": "<p><strong>oes-telemetry-bench</strong> is an offline Python replay and evaluation kit for <em>native</em> synchronized OES32 telemetry frames. Each observation must be one timestamped frame with exactly 32 named, finite channel values measured at that same timestamp. Thresholds are chosen only on a separate calibration replay and frozen before held-out scoring.</p><p><strong>Evidence.</strong> The bundled demo is explicitly <strong>SYNTHETIC</strong> (deterministic generated noise, injected events, synthetic unlabeled transients). It demonstrates that the parser, calibration, replay, and metrics run; it does not establish field performance, detector superiority, a sensor mapping, or operational suitability.</p><p><strong>Companion.</strong> The candidate detector matches the OES-Resilience <code>oes32</code> definition. Related repository: <a href=\"https://github.com/sparkainlp-x/oes-resilience\">oes-resilience</a>.</p><p><strong>Limits.</strong> Offline only: no live connection, no alarms, no equipment control. No QEC/consciousness/medical claims. Do not mint a GitHub release until the Zenodo webhook is enabled.</p>",
+  "creators": [
+    {
+      "name": "Brisson, Jean-François",
+      "affiliation": "Spark AI NLP",
+      "orcid": "0009-0000-9778-5374"
+    }
+  ],
+  "access_right": "open",
+  "license": "agpl-3.0-only",
+  "language": "eng",
+  "keywords": [
+    "telemetry",
+    "anomaly detection",
+    "benchmark",
+    "synthetic data",
+    "reproducibility",
+    "research software",
+    "python",
+    "numpy",
+    "OES32",
+    "open science"
+  ],
+  "related_identifiers": [
+    {
+      "identifier": "https://github.com/sparkainlp-x/oes-telemetry-bench",
+      "relation": "isSupplementTo",
+      "scheme": "url"
+    },
+    {
+      "identifier": "10.5281/zenodo.23071166",
+      "relation": "isSupplementTo",
+      "scheme": "doi",
+      "resource_type": "software"
+    }
+  ],
+  "communities": [
+    {
+      "identifier": "spark-ai-nlp"
+    }
+  ],
+  "notes": "Evidence status: SYNTHETIC demo only. Offline replay; no field-performance claims. Commercial licensing: see COMMERCIAL-LICENSE.md. Do not mint a GitHub release until the Zenodo webhook is enabled."
+}

@@ -1,0 +1,18 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "oes-telemetry-bench"
+version = "0.1.0"
+description = "Transparent offline replay and evaluation for native synchronized OES32 telemetry frames"
+readme = "README.md"
+requires-python = ">=3.11"
+dependencies = ["numpy>=1.24,<3"]
+license = { text = "AGPL-3.0-only" }
+
+[project.scripts]
+oes-telemetry-bench = "oes_telemetry_bench.bench:main"
+
+[tool.setuptools]
+packages = ["oes_telemetry_bench"]

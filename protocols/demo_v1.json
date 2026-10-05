@@ -1,0 +1,11 @@
+{
+  "schema_version": 1,
+  "protocol_id": "native32-fixed-recall-demo-v1",
+  "locked_at": "2026-10-05T16:36:00-04:00",
+  "target_event_recall": 0.9,
+  "warmup_frames": 16,
+  "ewma_lambda": 0.2,
+  "cusum_reference_k": 0.5,
+  "alarm_comparison": ">=",
+  "event_hit_rule": "any_alarm_frame_in_contiguous_event_episode"
+}

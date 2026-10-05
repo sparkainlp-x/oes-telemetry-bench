@@ -1,0 +1,965 @@
+{
+  "calibration_thresholds": {
+    "cusum": {
+      "calibration_achieved_event_recall": 0.9,
+      "calibration_detected_event_count": 9,
+      "calibration_event_count": 10,
+      "selection_rule": "highest score cutoff whose calibration event-episode maxima attain the target; alarm if score >= cutoff",
+      "target_event_recall": 0.9,
+      "threshold": 231.52248850740688
+    },
+    "ewma": {
+      "calibration_achieved_event_recall": 0.9,
+      "calibration_detected_event_count": 9,
+      "calibration_event_count": 10,
+      "selection_rule": "highest score cutoff whose calibration event-episode maxima attain the target; alarm if score >= cutoff",
+      "target_event_recall": 0.9,
+      "threshold": 58.2178580745677
+    },
+    "maxabs": {
+      "calibration_achieved_event_recall": 0.9,
+      "calibration_detected_event_count": 9,
+      "calibration_event_count": 10,
+      "selection_rule": "highest score cutoff whose calibration event-episode maxima attain the target; alarm if score >= cutoff",
+      "target_event_recall": 0.9,
+      "threshold": 0.73806403
+    },
+    "oes32": {
+      "calibration_achieved_event_recall": 0.9,
+      "calibration_detected_event_count": 9,
+      "calibration_event_count": 10,
+      "selection_rule": "highest score cutoff whose calibration event-episode maxima attain the target; alarm if score >= cutoff",
+      "target_event_recall": 0.9,
+      "threshold": 0.5924920316802698
+    }
+  },
+  "compute_environment": {
+    "logical_cpu_count": 8,
+    "machine": "x86_64",
+    "numpy": "2.5.3",
+    "platform": "Linux-6.18.38+-x86_64-with-glibc2.39",
+    "processor": "x86_64",
+    "python": "3.12.3",
+    "python_implementation": "CPython"
+  },
+  "detectors": {
+    "cusum": {
+      "detector_id": "oes_resilience.detectors.CUSUMDetector (registry: cusum)",
+      "formula": "z from warm-up standardized block mean; S+ = max(0,S+z-k), S- = max(0,S-z-k); score = max(S+,S-); alarm if score >= threshold",
+      "parameters": {
+        "k": 0.5,
+        "warmup_frames": 16
+      },
+      "version": {
+        "package_version": "0.4.0",
+        "release": "v0.4.0",
+        "repository": "https://github.com/sparkainlp-x/oes-resilience",
+        "source_commit": "15692152f1851bde617efd3a61fc09485dbe8ed7"
+      }
+    },
+    "ewma": {
+      "detector_id": "oes_resilience.detectors.EWMADetector (registry: ewma)",
+      "formula": "warm-up standardize block mean z; e_t = lambda*z_t + (1-lambda)*e_(t-1); score = abs(e_t)/sqrt(lambda/(2-lambda)); alarm if score >= threshold",
+      "parameters": {
+        "lambda": 0.2,
+        "warmup_frames": 16
+      },
+      "version": {
+        "package_version": "0.4.0",
+        "release": "v0.4.0",
+        "repository": "https://github.com/sparkainlp-x/oes-resilience",
+        "source_commit": "15692152f1851bde617efd3a61fc09485dbe8ed7"
+      }
+    },
+    "maxabs": {
+      "detector_id": "oes_telemetry_bench.baselines.maxabs",
+      "formula": "score = max(abs(x)) over the 32 simultaneous channels; alarm if score >= threshold",
+      "version": "0.1.0"
+    },
+    "oes32": {
+      "detector_id": "oes_resilience.detectors.OES32Detector (registry: oes32)",
+      "formula": "score = 0.45 * max(abs(x)) + 0.35 * sqrt(mean(x**2)) + 0.20 * mean(abs(x)) over the 32 simultaneous channels; alarm if score >= threshold",
+      "implementation_note": "Standalone score implementation in this kit; formula and threshold semantics match the cited OES-Resilience source commit.",
+      "version": {
+        "package_version": "0.4.0",
+        "release": "v0.4.0",
+        "repository": "https://github.com/sparkainlp-x/oes-resilience",
+        "source_commit": "15692152f1851bde617efd3a61fc09485dbe8ed7"
+      }
+    }
+  },
+  "evidence_class": "synthetic",
+  "held_out_results": {
+    "cusum": {
+      "calibration": {
+        "calibration_achieved_event_recall": 0.9,
+        "calibration_detected_event_count": 9,
+        "calibration_event_count": 10,
+        "selection_rule": "highest score cutoff whose calibration event-episode maxima attain the target; alarm if score >= cutoff",
+        "target_event_recall": 0.9,
+        "threshold": 231.52248850740688
+      },
+      "compute_cost": {
+        "mean_cpu_ms_per_frame": 0.0012316516666666666,
+        "mean_wall_ms_per_frame": 0.0012318350000000001,
+        "memory_note": "Python tracemalloc peak for one score call; not whole-process RSS or a hardware-independent cost",
+        "scored_frames_per_repetition": 360,
+        "timing_repetitions": 5,
+        "tracemalloc_peak_bytes_for_one_score_call": 11785,
+        "wall_frames_per_second": 811797.0345054329
+      },
+      "held_out": {
+        "detected_event_count": 5,
+        "detection_delay_ms": {
+          "by_event_id": {
+            "heldout-event-01": null,
+            "heldout-event-02": null,
+            "heldout-event-03": 3000.0,
+            "heldout-event-04": 0.0,
+            "heldout-event-05": 0.0,
+            "heldout-event-06": 0.0,
+            "heldout-event-07": 0.0
+          },
+          "definition": "first alarm-positive frame timestamp minus event onset; warm-up excluded",
+          "median": 0.0,
+          "p90": 1800.0000000000002
+        },
+        "event_episode_count": 7,
+        "event_hit_rule": "at least one alarm-positive frame within the contiguous labeled event episode",
+        "event_recall": 0.7142857142857143,
+        "false_alarm_episodes": 6,
+        "false_alarm_frame_rate": 0.6666666666666666,
+        "false_alarms_per_normal_hour": 69.23076923076923,
+        "frame_accuracy": 0.36046511627906974,
+        "frame_confusion": {
+          "fn": 12,
+          "fp": 208,
+          "tn": 104,
+          "tp": 20
+        },
+        "frame_count_evaluated": 344,
+        "frame_f1": 0.15384615384615385,
+        "frame_precision": 0.08771929824561403,
+        "frame_recall": 0.625,
+        "frame_specificity": 0.3333333333333333,
+        "localization": "not assessed: each timestamp is one native 32-channel block; no per-channel truth labels are supplied",
+        "missed_event_count": 2,
+        "missed_event_ids": [
+          "heldout-event-01",
+          "heldout-event-02"
+        ],
+        "normal_operating_hours": 0.08666666666666667
+      },
+      "held_out_by_regime": {
+        "fault_event": {
+          "detected_event_count": 5,
+          "detection_delay_ms": {
+            "by_event_id": {
+              "heldout-event-01": null,
+              "heldout-event-02": null,
+              "heldout-event-03": 3000.0,
+              "heldout-event-04": 0.0,
+              "heldout-event-05": 0.0,
+              "heldout-event-06": 0.0,
+              "heldout-event-07": 0.0
+            },
+            "definition": "first alarm-positive frame timestamp minus event onset; warm-up excluded",
+            "median": 0.0,
+            "p90": 1800.0000000000002
+          },
+          "event_episode_count": 7,
+          "event_hit_rule": "at least one alarm-positive frame within the contiguous labeled event episode",
+          "event_recall": 0.7142857142857143,
+          "false_alarm_episodes": 0,
+          "false_alarm_frame_rate": null,
+          "false_alarms_per_normal_hour": null,
+          "frame_accuracy": 0.625,
+          "frame_confusion": {
+            "fn": 12,
+            "fp": 0,
+            "tn": 0,
+            "tp": 20
+          },
+          "frame_count_evaluated": 32,
+          "frame_f1": 0.7692307692307693,
+          "frame_precision": 1.0,
+          "frame_recall": 0.625,
+          "frame_specificity": null,
+          "localization": "not assessed: each timestamp is one native 32-channel block; no per-channel truth labels are supplied",
+          "missed_event_count": 2,
+          "missed_event_ids": [
+            "heldout-event-01",
+            "heldout-event-02"
+          ],
+          "normal_operating_hours": 0.0
+        },
+        "load_transition": {
+          "detected_event_count": 0,
+          "detection_delay_ms": {
+            "by_event_id": {},
+            "definition": "first alarm-positive frame timestamp minus event onset; warm-up excluded",
+            "median": null,
+            "p90": null
+          },
+          "event_episode_count": 0,
+          "event_hit_rule": "at least one alarm-positive frame within the contiguous labeled event episode",
+          "event_recall": null,
+          "false_alarm_episodes": 1,
+          "false_alarm_frame_rate": 0.7058823529411765,
+          "false_alarms_per_normal_hour": 211.76470588235293,
+          "frame_accuracy": 0.29411764705882354,
+          "frame_confusion": {
+            "fn": 0,
+            "fp": 12,
+            "tn": 5,
+            "tp": 0
+          },
+          "frame_count_evaluated": 17,
+          "frame_f1": 0.0,
+          "frame_precision": 0.0,
+          "frame_recall": null,
+          "frame_specificity": 0.29411764705882354,
+          "localization": "not assessed: each timestamp is one native 32-channel block; no per-channel truth labels are supplied",
+          "missed_event_count": 0,
+          "missed_event_ids": [],
+          "normal_operating_hours": 0.004722222222222222
+        },
+        "noise_transient": {
+          "detected_event_count": 0,
+          "detection_delay_ms": {
+            "by_event_id": {},
+            "definition": "first alarm-positive frame timestamp minus event onset; warm-up excluded",
+            "median": null,
+            "p90": null
+          },
+          "event_episode_count": 0,
+          "event_hit_rule": "at least one alarm-positive frame within the contiguous labeled event episode",
+          "event_recall": null,
+          "false_alarm_episodes": 1,
+          "false_alarm_frame_rate": 1.0,
+          "false_alarms_per_normal_hour": 400.0,
+          "frame_accuracy": 0.0,
+          "frame_confusion": {
+            "fn": 0,
+            "fp": 9,
+            "tn": 0,
+            "tp": 0
+          },
+          "frame_count_evaluated": 9,
+          "frame_f1": 0.0,
+          "frame_precision": 0.0,
+          "frame_recall": null,
+          "frame_specificity": 0.0,
+          "localization": "not assessed: each timestamp is one native 32-channel block; no per-channel truth labels are supplied",
+          "missed_event_count": 0,
+          "missed_event_ids": [],
+          "normal_operating_hours": 0.0025
+        },
+        "steady": {
+          "detected_event_count": 0,
+          "detection_delay_ms": {
+            "by_event_id": {},
+            "definition": "first alarm-positive frame timestamp minus event onset; warm-up excluded",
+            "median": null,
+            "p90": null
+          },
+          "event_episode_count": 0,
+          "event_hit_rule": "at least one alarm-positive frame within the contiguous labeled event episode",
+          "event_recall": null,
+          "false_alarm_episodes": 7,
+          "false_alarm_frame_rate": 0.6538461538461539,
+          "false_alarms_per_normal_hour": 88.11188811188812,
+          "frame_accuracy": 0.34615384615384615,
+          "frame_confusion": {
+            "fn": 0,
+            "fp": 187,
+            "tn": 99,
+            "tp": 0
+          },
+          "frame_count_evaluated": 286,
+          "frame_f1": 0.0,
+          "frame_precision": 0.0,
+          "frame_recall": null,
+          "frame_specificity": 0.34615384615384615,
+          "localization": "not assessed: each timestamp is one native 32-channel block; no per-channel truth labels are supplied",
+          "missed_event_count": 0,
+          "missed_event_ids": [],
+          "normal_operating_hours": 0.07944444444444444
+        }
+      },
+      "threshold": 231.52248850740688,
+      "threshold_source": "calibration replay only; frozen before held-out metrics"
+    },
+    "ewma": {
+      "calibration": {
+        "calibration_achieved_event_recall": 0.9,
+        "calibration_detected_event_count": 9,
+        "calibration_event_count": 10,
+        "selection_rule": "highest score cutoff whose calibration event-episode maxima attain the target; alarm if score >= cutoff",
+        "target_event_recall": 0.9,
+        "threshold": 58.2178580745677
+      },
+      "compute_cost": {
+        "mean_cpu_ms_per_frame": 0.0005537505555555555,
+        "mean_wall_ms_per_frame": 0.0005535605555555556,
+        "memory_note": "Python tracemalloc peak for one score call; not whole-process RSS or a hardware-independent cost",
+        "scored_frames_per_repetition": 360,
+        "timing_repetitions": 5,
+        "tracemalloc_peak_bytes_for_one_score_call": 11785,
+        "wall_frames_per_second": 1806487.095158715
+      },
+      "held_out": {
+        "detected_event_count": 3,
+        "detection_delay_ms": {
+          "by_event_id": {
+            "heldout-event-01": null,
+            "heldout-event-02": null,
+            "heldout-event-03": null,
+            "heldout-event-04": 4000.0,
+            "heldout-event-05": 3000.0,
+            "heldout-event-06": null,
+            "heldout-event-07": 2000.0
+          },
+          "definition": "first alarm-positive frame timestamp minus event onset; warm-up excluded",
+          "median": 3000.0,
+          "p90": 3800.0
+        },
+        "event_episode_count": 7,
+        "event_hit_rule": "at least one alarm-positive frame within the contiguous labeled event episode",
+        "event_recall": 0.42857142857142855,
+        "false_alarm_episodes": 1,
+        "false_alarm_frame_rate": 0.003205128205128205,
+        "false_alarms_per_normal_hour": 11.538461538461538,
+        "frame_accuracy": 0.9186046511627907,
+        "frame_confusion": {
+          "fn": 27,
+          "fp": 1,
+          "tn": 311,
+          "tp": 5
+        },
+        "frame_count_evaluated": 344,
+        "frame_f1": 0.2631578947368421,
+        "frame_precision": 0.8333333333333334,
+        "frame_recall": 0.15625,
+        "frame_specificity": 0.9967948717948718,
+        "localization": "not assessed: each timestamp is one native 32-channel block; no per-channel truth labels are supplied",
+        "missed_event_count": 4,
+        "missed_event_ids": [
+          "heldout-event-01",
+          "heldout-event-02",
+          "heldout-event-03",
+          "heldout-event-06"
+        ],
+        "normal_operating_hours": 0.08666666666666667
+      },
+      "held_out_by_regime": {
+        "fault_event": {
+          "detected_event_count": 3,
+          "detection_delay_ms": {
+            "by_event_id": {
+              "heldout-event-01": null,
+              "heldout-event-02": null,
+              "heldout-event-03": null,
+              "heldout-event-04": 4000.0,
+              "heldout-event-05": 3000.0,
+              "heldout-event-06": null,
+              "heldout-event-07": 2000.0
+            },
+            "definition": "first alarm-positive frame timestamp minus event onset; warm-up excluded",
+            "median": 3000.0,
+            "p90": 3800.0
+          },
+          "event_episode_count": 7,
+          "event_hit_rule": "at least one alarm-positive frame within the contiguous labeled event episode",
+          "event_recall": 0.42857142857142855,
+          "false_alarm_episodes": 0,
+          "false_alarm_frame_rate": null,
+          "false_alarms_per_normal_hour": null,
+          "frame_accuracy": 0.15625,
+          "frame_confusion": {
+            "fn": 27,
+            "fp": 0,
+            "tn": 0,
+            "tp": 5
+          },
+          "frame_count_evaluated": 32,
+          "frame_f1": 0.2702702702702703,
+          "frame_precision": 1.0,
+          "frame_recall": 0.15625,
+          "frame_specificity": null,
+          "localization": "not assessed: each timestamp is one native 32-channel block; no per-channel truth labels are supplied",
+          "missed_event_count": 4,
+          "missed_event_ids": [
+            "heldout-event-01",
+            "heldout-event-02",
+            "heldout-event-03",
+            "heldout-event-06"
+          ],
+          "normal_operating_hours": 0.0
+        },
+        "load_transition": {
+          "detected_event_count": 0,
+          "detection_delay_ms": {
+            "by_event_id": {},
+            "definition": "first alarm-positive frame timestamp minus event onset; warm-up excluded",
+            "median": null,
+            "p90": null
+          },
+          "event_episode_count": 0,
+          "event_hit_rule": "at least one alarm-positive frame within the contiguous labeled event episode",
+          "event_recall": null,
+          "false_alarm_episodes": 0,
+          "false_alarm_frame_rate": 0.0,
+          "false_alarms_per_normal_hour": 0.0,
+          "frame_accuracy": 1.0,
+          "frame_confusion": {
+            "fn": 0,
+            "fp": 0,
+            "tn": 17,
+            "tp": 0
+          },
+          "frame_count_evaluated": 17,
+          "frame_f1": null,
+          "frame_precision": null,
+          "frame_recall": null,
+          "frame_specificity": 1.0,
+          "localization": "not assessed: each timestamp is one native 32-channel block; no per-channel truth labels are supplied",
+          "missed_event_count": 0,
+          "missed_event_ids": [],
+          "normal_operating_hours": 0.004722222222222222
+        },
+        "noise_transient": {
+          "detected_event_count": 0,
+          "detection_delay_ms": {
+            "by_event_id": {},
+            "definition": "first alarm-positive frame timestamp minus event onset; warm-up excluded",
+            "median": null,
+            "p90": null
+          },
+          "event_episode_count": 0,
+          "event_hit_rule": "at least one alarm-positive frame within the contiguous labeled event episode",
+          "event_recall": null,
+          "false_alarm_episodes": 0,
+          "false_alarm_frame_rate": 0.0,
+          "false_alarms_per_normal_hour": 0.0,
+          "frame_accuracy": 1.0,
+          "frame_confusion": {
+            "fn": 0,
+            "fp": 0,
+            "tn": 9,
+            "tp": 0
+          },
+          "frame_count_evaluated": 9,
+          "frame_f1": null,
+          "frame_precision": null,
+          "frame_recall": null,
+          "frame_specificity": 1.0,
+          "localization": "not assessed: each timestamp is one native 32-channel block; no per-channel truth labels are supplied",
+          "missed_event_count": 0,
+          "missed_event_ids": [],
+          "normal_operating_hours": 0.0025
+        },
+        "steady": {
+          "detected_event_count": 0,
+          "detection_delay_ms": {
+            "by_event_id": {},
+            "definition": "first alarm-positive frame timestamp minus event onset; warm-up excluded",
+            "median": null,
+            "p90": null
+          },
+          "event_episode_count": 0,
+          "event_hit_rule": "at least one alarm-positive frame within the contiguous labeled event episode",
+          "event_recall": null,
+          "false_alarm_episodes": 1,
+          "false_alarm_frame_rate": 0.0034965034965034965,
+          "false_alarms_per_normal_hour": 12.587412587412588,
+          "frame_accuracy": 0.9965034965034965,
+          "frame_confusion": {
+            "fn": 0,
+            "fp": 1,
+            "tn": 285,
+            "tp": 0
+          },
+          "frame_count_evaluated": 286,
+          "frame_f1": 0.0,
+          "frame_precision": 0.0,
+          "frame_recall": null,
+          "frame_specificity": 0.9965034965034965,
+          "localization": "not assessed: each timestamp is one native 32-channel block; no per-channel truth labels are supplied",
+          "missed_event_count": 0,
+          "missed_event_ids": [],
+          "normal_operating_hours": 0.07944444444444444
+        }
+      },
+      "threshold": 58.2178580745677,
+      "threshold_source": "calibration replay only; frozen before held-out metrics"
+    },
+    "maxabs": {
+      "calibration": {
+        "calibration_achieved_event_recall": 0.9,
+        "calibration_detected_event_count": 9,
+        "calibration_event_count": 10,
+        "selection_rule": "highest score cutoff whose calibration event-episode maxima attain the target; alarm if score >= cutoff",
+        "target_event_recall": 0.9,
+        "threshold": 0.73806403
+      },
+      "compute_cost": {
+        "mean_cpu_ms_per_frame": 0.00013268277777777777,
+        "mean_wall_ms_per_frame": 0.00013172,
+        "memory_note": "Python tracemalloc peak for one score call; not whole-process RSS or a hardware-independent cost",
+        "scored_frames_per_repetition": 360,
+        "timing_repetitions": 5,
+        "tracemalloc_peak_bytes_for_one_score_call": 96152,
+        "wall_frames_per_second": 7591861.5244457945
+      },
+      "held_out": {
+        "detected_event_count": 6,
+        "detection_delay_ms": {
+          "by_event_id": {
+            "heldout-event-01": null,
+            "heldout-event-02": 1000.0,
+            "heldout-event-03": 0.0,
+            "heldout-event-04": 0.0,
+            "heldout-event-05": 0.0,
+            "heldout-event-06": 3000.0,
+            "heldout-event-07": 0.0
+          },
+          "definition": "first alarm-positive frame timestamp minus event onset; warm-up excluded",
+          "median": 0.0,
+          "p90": 2000.0
+        },
+        "event_episode_count": 7,
+        "event_hit_rule": "at least one alarm-positive frame within the contiguous labeled event episode",
+        "event_recall": 0.8571428571428571,
+        "false_alarm_episodes": 1,
+        "false_alarm_frame_rate": 0.028846153846153848,
+        "false_alarms_per_normal_hour": 11.538461538461538,
+        "frame_accuracy": 0.9418604651162791,
+        "frame_confusion": {
+          "fn": 11,
+          "fp": 9,
+          "tn": 303,
+          "tp": 21
+        },
+        "frame_count_evaluated": 344,
+        "frame_f1": 0.6774193548387096,
+        "frame_precision": 0.7,
+        "frame_recall": 0.65625,
+        "frame_specificity": 0.9711538461538461,
+        "localization": "not assessed: each timestamp is one native 32-channel block; no per-channel truth labels are supplied",
+        "missed_event_count": 1,
+        "missed_event_ids": [
+          "heldout-event-01"
+        ],
+        "normal_operating_hours": 0.08666666666666667
+      },
+      "held_out_by_regime": {
+        "fault_event": {
+          "detected_event_count": 6,
+          "detection_delay_ms": {
+            "by_event_id": {
+              "heldout-event-01": null,
+              "heldout-event-02": 1000.0,
+              "heldout-event-03": 0.0,
+              "heldout-event-04": 0.0,
+              "heldout-event-05": 0.0,
+              "heldout-event-06": 3000.0,
+              "heldout-event-07": 0.0
+            },
+            "definition": "first alarm-positive frame timestamp minus event onset; warm-up excluded",
+            "median": 0.0,
+            "p90": 2000.0
+          },
+          "event_episode_count": 7,
+          "event_hit_rule": "at least one alarm-positive frame within the contiguous labeled event episode",
+          "event_recall": 0.8571428571428571,
+          "false_alarm_episodes": 0,
+          "false_alarm_frame_rate": null,
+          "false_alarms_per_normal_hour": null,
+          "frame_accuracy": 0.65625,
+          "frame_confusion": {
+            "fn": 11,
+            "fp": 0,
+            "tn": 0,
+            "tp": 21
+          },
+          "frame_count_evaluated": 32,
+          "frame_f1": 0.7924528301886793,
+          "frame_precision": 1.0,
+          "frame_recall": 0.65625,
+          "frame_specificity": null,
+          "localization": "not assessed: each timestamp is one native 32-channel block; no per-channel truth labels are supplied",
+          "missed_event_count": 1,
+          "missed_event_ids": [
+            "heldout-event-01"
+          ],
+          "normal_operating_hours": 0.0
+        },
+        "load_transition": {
+          "detected_event_count": 0,
+          "detection_delay_ms": {
+            "by_event_id": {},
+            "definition": "first alarm-positive frame timestamp minus event onset; warm-up excluded",
+            "median": null,
+            "p90": null
+          },
+          "event_episode_count": 0,
+          "event_hit_rule": "at least one alarm-positive frame within the contiguous labeled event episode",
+          "event_recall": null,
+          "false_alarm_episodes": 0,
+          "false_alarm_frame_rate": 0.0,
+          "false_alarms_per_normal_hour": 0.0,
+          "frame_accuracy": 1.0,
+          "frame_confusion": {
+            "fn": 0,
+            "fp": 0,
+            "tn": 17,
+            "tp": 0
+          },
+          "frame_count_evaluated": 17,
+          "frame_f1": null,
+          "frame_precision": null,
+          "frame_recall": null,
+          "frame_specificity": 1.0,
+          "localization": "not assessed: each timestamp is one native 32-channel block; no per-channel truth labels are supplied",
+          "missed_event_count": 0,
+          "missed_event_ids": [],
+          "normal_operating_hours": 0.004722222222222222
+        },
+        "noise_transient": {
+          "detected_event_count": 0,
+          "detection_delay_ms": {
+            "by_event_id": {},
+            "definition": "first alarm-positive frame timestamp minus event onset; warm-up excluded",
+            "median": null,
+            "p90": null
+          },
+          "event_episode_count": 0,
+          "event_hit_rule": "at least one alarm-positive frame within the contiguous labeled event episode",
+          "event_recall": null,
+          "false_alarm_episodes": 1,
+          "false_alarm_frame_rate": 1.0,
+          "false_alarms_per_normal_hour": 400.0,
+          "frame_accuracy": 0.0,
+          "frame_confusion": {
+            "fn": 0,
+            "fp": 9,
+            "tn": 0,
+            "tp": 0
+          },
+          "frame_count_evaluated": 9,
+          "frame_f1": 0.0,
+          "frame_precision": 0.0,
+          "frame_recall": null,
+          "frame_specificity": 0.0,
+          "localization": "not assessed: each timestamp is one native 32-channel block; no per-channel truth labels are supplied",
+          "missed_event_count": 0,
+          "missed_event_ids": [],
+          "normal_operating_hours": 0.0025
+        },
+        "steady": {
+          "detected_event_count": 0,
+          "detection_delay_ms": {
+            "by_event_id": {},
+            "definition": "first alarm-positive frame timestamp minus event onset; warm-up excluded",
+            "median": null,
+            "p90": null
+          },
+          "event_episode_count": 0,
+          "event_hit_rule": "at least one alarm-positive frame within the contiguous labeled event episode",
+          "event_recall": null,
+          "false_alarm_episodes": 0,
+          "false_alarm_frame_rate": 0.0,
+          "false_alarms_per_normal_hour": 0.0,
+          "frame_accuracy": 1.0,
+          "frame_confusion": {
+            "fn": 0,
+            "fp": 0,
+            "tn": 286,
+            "tp": 0
+          },
+          "frame_count_evaluated": 286,
+          "frame_f1": null,
+          "frame_precision": null,
+          "frame_recall": null,
+          "frame_specificity": 1.0,
+          "localization": "not assessed: each timestamp is one native 32-channel block; no per-channel truth labels are supplied",
+          "missed_event_count": 0,
+          "missed_event_ids": [],
+          "normal_operating_hours": 0.07944444444444444
+        }
+      },
+      "threshold": 0.73806403,
+      "threshold_source": "calibration replay only; frozen before held-out metrics"
+    },
+    "oes32": {
+      "calibration": {
+        "calibration_achieved_event_recall": 0.9,
+        "calibration_detected_event_count": 9,
+        "calibration_event_count": 10,
+        "selection_rule": "highest score cutoff whose calibration event-episode maxima attain the target; alarm if score >= cutoff",
+        "target_event_recall": 0.9,
+        "threshold": 0.5924920316802698
+      },
+      "compute_cost": {
+        "mean_cpu_ms_per_frame": 0.00026802166666666666,
+        "mean_wall_ms_per_frame": 0.0002666005555555556,
+        "memory_note": "Python tracemalloc peak for one score call; not whole-process RSS or a hardware-independent cost",
+        "scored_frames_per_repetition": 360,
+        "timing_repetitions": 5,
+        "tracemalloc_peak_bytes_for_one_score_call": 191320,
+        "wall_frames_per_second": 3750929.918042181
+      },
+      "held_out": {
+        "detected_event_count": 6,
+        "detection_delay_ms": {
+          "by_event_id": {
+            "heldout-event-01": null,
+            "heldout-event-02": 1000.0,
+            "heldout-event-03": 0.0,
+            "heldout-event-04": 0.0,
+            "heldout-event-05": 0.0,
+            "heldout-event-06": 3000.0,
+            "heldout-event-07": 0.0
+          },
+          "definition": "first alarm-positive frame timestamp minus event onset; warm-up excluded",
+          "median": 0.0,
+          "p90": 2000.0
+        },
+        "event_episode_count": 7,
+        "event_hit_rule": "at least one alarm-positive frame within the contiguous labeled event episode",
+        "event_recall": 0.8571428571428571,
+        "false_alarm_episodes": 2,
+        "false_alarm_frame_rate": 0.022435897435897436,
+        "false_alarms_per_normal_hour": 23.076923076923077,
+        "frame_accuracy": 0.9476744186046512,
+        "frame_confusion": {
+          "fn": 11,
+          "fp": 7,
+          "tn": 305,
+          "tp": 21
+        },
+        "frame_count_evaluated": 344,
+        "frame_f1": 0.7,
+        "frame_precision": 0.75,
+        "frame_recall": 0.65625,
+        "frame_specificity": 0.9775641025641025,
+        "localization": "not assessed: each timestamp is one native 32-channel block; no per-channel truth labels are supplied",
+        "missed_event_count": 1,
+        "missed_event_ids": [
+          "heldout-event-01"
+        ],
+        "normal_operating_hours": 0.08666666666666667
+      },
+      "held_out_by_regime": {
+        "fault_event": {
+          "detected_event_count": 6,
+          "detection_delay_ms": {
+            "by_event_id": {
+              "heldout-event-01": null,
+              "heldout-event-02": 1000.0,
+              "heldout-event-03": 0.0,
+              "heldout-event-04": 0.0,
+              "heldout-event-05": 0.0,
+              "heldout-event-06": 3000.0,
+              "heldout-event-07": 0.0
+            },
+            "definition": "first alarm-positive frame timestamp minus event onset; warm-up excluded",
+            "median": 0.0,
+            "p90": 2000.0
+          },
+          "event_episode_count": 7,
+          "event_hit_rule": "at least one alarm-positive frame within the contiguous labeled event episode",
+          "event_recall": 0.8571428571428571,
+          "false_alarm_episodes": 0,
+          "false_alarm_frame_rate": null,
+          "false_alarms_per_normal_hour": null,
+          "frame_accuracy": 0.65625,
+          "frame_confusion": {
+            "fn": 11,
+            "fp": 0,
+            "tn": 0,
+            "tp": 21
+          },
+          "frame_count_evaluated": 32,
+          "frame_f1": 0.7924528301886793,
+          "frame_precision": 1.0,
+          "frame_recall": 0.65625,
+          "frame_specificity": null,
+          "localization": "not assessed: each timestamp is one native 32-channel block; no per-channel truth labels are supplied",
+          "missed_event_count": 1,
+          "missed_event_ids": [
+            "heldout-event-01"
+          ],
+          "normal_operating_hours": 0.0
+        },
+        "load_transition": {
+          "detected_event_count": 0,
+          "detection_delay_ms": {
+            "by_event_id": {},
+            "definition": "first alarm-positive frame timestamp minus event onset; warm-up excluded",
+            "median": null,
+            "p90": null
+          },
+          "event_episode_count": 0,
+          "event_hit_rule": "at least one alarm-positive frame within the contiguous labeled event episode",
+          "event_recall": null,
+          "false_alarm_episodes": 0,
+          "false_alarm_frame_rate": 0.0,
+          "false_alarms_per_normal_hour": 0.0,
+          "frame_accuracy": 1.0,
+          "frame_confusion": {
+            "fn": 0,
+            "fp": 0,
+            "tn": 17,
+            "tp": 0
+          },
+          "frame_count_evaluated": 17,
+          "frame_f1": null,
+          "frame_precision": null,
+          "frame_recall": null,
+          "frame_specificity": 1.0,
+          "localization": "not assessed: each timestamp is one native 32-channel block; no per-channel truth labels are supplied",
+          "missed_event_count": 0,
+          "missed_event_ids": [],
+          "normal_operating_hours": 0.004722222222222222
+        },
+        "noise_transient": {
+          "detected_event_count": 0,
+          "detection_delay_ms": {
+            "by_event_id": {},
+            "definition": "first alarm-positive frame timestamp minus event onset; warm-up excluded",
+            "median": null,
+            "p90": null
+          },
+          "event_episode_count": 0,
+          "event_hit_rule": "at least one alarm-positive frame within the contiguous labeled event episode",
+          "event_recall": null,
+          "false_alarm_episodes": 2,
+          "false_alarm_frame_rate": 0.7777777777777778,
+          "false_alarms_per_normal_hour": 800.0,
+          "frame_accuracy": 0.2222222222222222,
+          "frame_confusion": {
+            "fn": 0,
+            "fp": 7,
+            "tn": 2,
+            "tp": 0
+          },
+          "frame_count_evaluated": 9,
+          "frame_f1": 0.0,
+          "frame_precision": 0.0,
+          "frame_recall": null,
+          "frame_specificity": 0.2222222222222222,
+          "localization": "not assessed: each timestamp is one native 32-channel block; no per-channel truth labels are supplied",
+          "missed_event_count": 0,
+          "missed_event_ids": [],
+          "normal_operating_hours": 0.0025
+        },
+        "steady": {
+          "detected_event_count": 0,
+          "detection_delay_ms": {
+            "by_event_id": {},
+            "definition": "first alarm-positive frame timestamp minus event onset; warm-up excluded",
+            "median": null,
+            "p90": null
+          },
+          "event_episode_count": 0,
+          "event_hit_rule": "at least one alarm-positive frame within the contiguous labeled event episode",
+          "event_recall": null,
+          "false_alarm_episodes": 0,
+          "false_alarm_frame_rate": 0.0,
+          "false_alarms_per_normal_hour": 0.0,
+          "frame_accuracy": 1.0,
+          "frame_confusion": {
+            "fn": 0,
+            "fp": 0,
+            "tn": 286,
+            "tp": 0
+          },
+          "frame_count_evaluated": 286,
+          "frame_f1": null,
+          "frame_precision": null,
+          "frame_recall": null,
+          "frame_specificity": 1.0,
+          "localization": "not assessed: each timestamp is one native 32-channel block; no per-channel truth labels are supplied",
+          "missed_event_count": 0,
+          "missed_event_ids": [],
+          "normal_operating_hours": 0.07944444444444444
+        }
+      },
+      "threshold": 0.5924920316802698,
+      "threshold_source": "calibration replay only; frozen before held-out metrics"
+    }
+  },
+  "inputs": {
+    "calibration": {
+      "cadence_seconds": 1.0,
+      "frame_count": 320,
+      "path": "/workspace/oes-telemetry-bench/data/demo_calibration.jsonl",
+      "sha256": "6039dd34b9ec01ae27576d65f8e7b65f76dd10c3064968a086c36bce547b68df"
+    },
+    "held_out_evaluation": {
+      "cadence_seconds": 1.0,
+      "frame_count": 360,
+      "path": "/workspace/oes-telemetry-bench/data/demo_holdout.jsonl",
+      "sha256": "ebe3a01685f0e9b9ecc66955e805390d4c80f68d20ccc7766707af5f106e9c4e"
+    }
+  },
+  "interpretation": "SYNTHETIC demonstration outcomes; not field performance and not evidence of detector superiority.",
+  "limitations": [
+    "Synthetic examples test software behavior only; they do not establish field performance.",
+    "The provided native frame contract asserts simultaneity only through exact per-channel timestamps; source clocks and sensor semantics are not independently audited.",
+    "protocol.locked_at is self-declared; its SHA-256 identifies protocol bytes but does not independently prove when the protocol was frozen.",
+    "EWMA and CUSUM operate per sample and assume the declared regular cadence.",
+    "Measured runtime and traced memory are machine- and workload-dependent; no operational compute budget is implied.",
+    "No per-channel localization, field labels, asset/regime confidence intervals, or incumbent comparison is included in this starter kit."
+  ],
+  "metric_definitions": {
+    "detection_delay": "first alarm-positive frame timestamp minus event onset; misses omitted from delay percentiles",
+    "event_recall": "detected contiguous event episodes / labeled event episodes; an episode is detected by any alarm-positive frame",
+    "false_alarms_per_normal_hour": "contiguous alarm episodes on event_label=none frames divided by event-free evaluated duration",
+    "frame_metrics": "TP/FP/FN/TN and precision, recall, F1, specificity, accuracy over evaluated frames after warm-up",
+    "thresholds": "chosen only from calibration event-episode maxima; no held-out label participates in fitting or selection"
+  },
+  "native_geometry": {
+    "blocks_per_frame": 1,
+    "channel_count": 32,
+    "channel_ids_sha256": "c37e436709926e67870ae4c83c5338e1a3655a4dfe4e4194787905dce6437c6f",
+    "channels_per_timestamp": 32,
+    "mode": "native synchronized 32-channel frames",
+    "preprocessing": "none; no resampling, interpolation, channel duplication, padding, or imputation",
+    "sampling_rule": "strictly increasing, exactly regular sample cadence; same cadence in calibration and held-out evaluation",
+    "synchronization_rule": "each of the 32 channel_timestamps must exactly equal the frame timestamp after UTC normalization",
+    "univariate_data_is_native_validation": false
+  },
+  "project": {
+    "name": "oes-telemetry-bench",
+    "version": "0.1.0"
+  },
+  "protocol": {
+    "alarm_comparison": ">=",
+    "cusum_reference_k": 0.5,
+    "event_hit_rule": "any_alarm_frame_in_contiguous_event_episode",
+    "ewma_lambda": 0.2,
+    "locked_at": "2026-10-05T16:36:00-04:00",
+    "protocol_id": "native32-fixed-recall-demo-v1",
+    "schema_version": 1,
+    "sha256": "91add23aef2ce3e6fb245086f5cd93f1dee39874564721c18ab714c8973f149c",
+    "split_rule": "calibration timestamps precede held-out timestamps; same channel order/cadence; thresholds use calibration labels only",
+    "target_event_recall": 0.9,
+    "threshold_rule": "calibrate each detector independently to the target event recall on calibration event-episode maxima; freeze thresholds before held-out scoring",
+    "warmup_frames": 16,
+    "warmup_rule": "first 16 event-free frames of each split initialize temporal baselines and are excluded for every detector"
+  },
+  "related_algorithm_not_used": {
+    "contract_commit": "b77b61254f15778c6ae221843dceac7a8571158e",
+    "decision": "fails iff R > tolerance (equality passes); not an anomaly detector and not used here",
+    "formula": "R = max_i(abs(observed_i - reference_i)) for two 32-value vectors",
+    "function_id": "residual_reference.evaluate_residual",
+    "release": "v0.1.1",
+    "repository": "https://github.com/sparkainlp-x/oes32-residual",
+    "used": false
+  },
+  "report_schema_version": 1,
+  "scope": "offline replay evaluation only; no live telemetry, operational alarm, safety instrument, or process control"
+}
