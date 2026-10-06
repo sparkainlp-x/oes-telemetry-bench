@@ -3,7 +3,7 @@
 [![CI](https://github.com/sparkainlp-x/oes-telemetry-bench/actions/workflows/ci.yml/badge.svg)](https://github.com/sparkainlp-x/oes-telemetry-bench/actions/workflows/ci.yml)
 [![License: AGPL-3.0-only](https://img.shields.io/badge/License-AGPL--3.0--only-blue.svg)](LICENSE)
 [![Evidence: SYNTHETIC](https://img.shields.io/badge/evidence-SYNTHETIC-blue.svg)](#evidence-boundary)
-[![DOI: pending](https://img.shields.io/badge/DOI-pending-lightgrey.svg)](#cite)
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.23175492.svg)](https://doi.org/10.5281/zenodo.23175492)
 
 A small, offline replay kit for **native OES32 evaluation**: each observation must be one timestamped frame containing exactly 32 named, finite channel values measured at that same timestamp. The bundled demo is explicitly **synthetic**; it is a software exercise, not field evidence. The tool makes no live connection and does not operate alarms or equipment.
 
@@ -102,11 +102,12 @@ The example replay is deterministic generated noise, injected events, and synthe
   title = {oes-telemetry-bench: offline replay bench for native synchronized OES32 telemetry frames},
   version = {0.1.0},
   year = {2026},
+  doi = {10.5281/zenodo.23175492},
   url = {https://github.com/sparkainlp-x/oes-telemetry-bench},
   license = {AGPL-3.0-only},
   note = {SYNTHETIC demo only; not field evidence}
 }
 ```
 
-See also [CITATION.cff](CITATION.cff). Version 0.1.0 was released on 2026-10-05 (tag [`v0.1.0`](https://github.com/sparkainlp-x/oes-telemetry-bench/releases/tag/v0.1.0)). The Zenodo DOI will be added here once Zenodo archives the release.
+See also [CITATION.cff](CITATION.cff). Version 0.1.0 was released on 2026-10-05 (tag [`v0.1.0`](https://github.com/sparkainlp-x/oes-telemetry-bench/releases/tag/v0.1.0)). Concept DOI (all versions): [10.5281/zenodo.23175492](https://doi.org/10.5281/zenodo.23175492); version DOI for v0.1.0: [10.5281/zenodo.23175493](https://doi.org/10.5281/zenodo.23175493).
 

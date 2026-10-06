@@ -12,6 +12,14 @@ url: "https://github.com/sparkainlp-x/oes-telemetry-bench"
 license: AGPL-3.0-only
 version: "0.1.0"
 date-released: "2026-10-05"
+doi: "10.5281/zenodo.23175492"
+identifiers:
+  - type: doi
+    value: "10.5281/zenodo.23175492"
+    description: "Concept DOI (all versions)"
+  - type: doi
+    value: "10.5281/zenodo.23175493"
+    description: "Version DOI for v0.1.0"
 abstract: >-
   Offline Python replay and evaluation kit for native synchronized OES32
   telemetry frames: strict 32-channel contract, frozen thresholds from a

@@ -2,9 +2,13 @@
 
 All notable changes to this project. The bundled demo is SYNTHETIC; nothing here is field evidence.
 
+## Unreleased
+
+- Added the Zenodo concept DOI [10.5281/zenodo.23175492](https://doi.org/10.5281/zenodo.23175492) (v0.1.0 version DOI [10.5281/zenodo.23175493](https://doi.org/10.5281/zenodo.23175493)) to the README and `CITATION.cff`. The `v0.1.0` tag was not moved.
+
 ## 0.1.0 (2026-10-05)
 
-First tagged release (`v0.1.0`). The Zenodo DOI is added to the README and `CITATION.cff` after Zenodo archives the release; the tag is not moved.
+First tagged release (`v0.1.0`). Archived on Zenodo as 10.5281/zenodo.23175493; the tag is not moved.
 
 ### Added
 
