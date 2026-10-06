@@ -108,5 +108,5 @@ The example replay is deterministic generated noise, injected events, and synthe
 }
 ```
 
-See also [CITATION.cff](CITATION.cff). DOI pending (do not mint a GitHub release until the Zenodo webhook is enabled).
+See also [CITATION.cff](CITATION.cff). Version 0.1.0 was released on 2026-10-05 (tag [`v0.1.0`](https://github.com/sparkainlp-x/oes-telemetry-bench/releases/tag/v0.1.0)). The Zenodo DOI will be added here once Zenodo archives the release.
 
