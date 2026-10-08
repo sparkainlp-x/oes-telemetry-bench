@@ -18,8 +18,8 @@ identifiers:
     value: "10.5281/zenodo.23175492"
     description: "Concept DOI (all versions)"
   - type: doi
-    value: "10.5281/zenodo.23175493"
-    description: "Version DOI for v0.1.0"
+    value: "10.5281/zenodo.23241694"
+    description: "Version DOI for v0.1.1"
 abstract: >-
   Offline Python replay and evaluation kit for native synchronized OES32
   telemetry frames: strict 32-channel contract, frozen thresholds from a

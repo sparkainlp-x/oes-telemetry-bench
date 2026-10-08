@@ -109,5 +109,5 @@ The example replay is deterministic generated noise, injected events, and synthe
 }
 ```
 
-See also [CITATION.cff](CITATION.cff). Version 0.1.0 was released on 2026-10-05 (tag [`v0.1.0`](https://github.com/sparkainlp-x/oes-telemetry-bench/releases/tag/v0.1.0)). Concept DOI (all versions): [10.5281/zenodo.23175492](https://doi.org/10.5281/zenodo.23175492); version DOI for v0.1.0: [10.5281/zenodo.23175493](https://doi.org/10.5281/zenodo.23175493).
+See also [CITATION.cff](CITATION.cff). The current version is 0.1.1 (tag [`v0.1.1`](https://github.com/sparkainlp-x/oes-telemetry-bench/releases/tag/v0.1.1), 2026-10-08). Concept DOI (all versions): [10.5281/zenodo.23175492](https://doi.org/10.5281/zenodo.23175492); version DOIs: v0.1.1 [10.5281/zenodo.23241694](https://doi.org/10.5281/zenodo.23241694), v0.1.0 [10.5281/zenodo.23175493](https://doi.org/10.5281/zenodo.23175493).
 
