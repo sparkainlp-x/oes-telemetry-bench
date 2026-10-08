@@ -10,8 +10,8 @@ authors:
 repository-code: "https://github.com/sparkainlp-x/oes-telemetry-bench"
 url: "https://github.com/sparkainlp-x/oes-telemetry-bench"
 license: AGPL-3.0-only
-version: "0.1.0"
-date-released: "2026-10-05"
+version: "0.1.1"
+date-released: "2026-10-08"
 doi: "10.5281/zenodo.23175492"
 identifiers:
   - type: doi

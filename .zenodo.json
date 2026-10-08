@@ -1,8 +1,9 @@
 {
   "upload_type": "software",
   "title": "oes-telemetry-bench: offline replay bench for native synchronized OES32 telemetry frames",
-  "version": "0.1.0",
-  "description": "<p><strong>oes-telemetry-bench</strong> is an offline Python replay and evaluation kit for <em>native</em> synchronized OES32 telemetry frames. Each observation must be one timestamped frame with exactly 32 named, finite channel values measured at that same timestamp. Thresholds are chosen only on a separate calibration replay and frozen before held-out scoring.</p><p><strong>Evidence.</strong> The bundled demo is explicitly <strong>SYNTHETIC</strong> (deterministic generated noise, injected events, synthetic unlabeled transients). It demonstrates that the parser, calibration, replay, and metrics run; it does not establish field performance, detector superiority, a sensor mapping, or operational suitability.</p><p><strong>Companion.</strong> The candidate detector matches the OES-Resilience <code>oes32</code> definition. Related repository: <a href=\"https://github.com/sparkainlp-x/oes-resilience\">oes-resilience</a>.</p><p><strong>Limits.</strong> Offline only: no live connection, no alarms, no equipment control. No QEC/consciousness/medical claims.</p>",
+  "version": "0.1.1",
+  "publication_date": "2026-10-08",
+  "description": "<p><strong>oes-telemetry-bench</strong> is an offline Python replay and evaluation kit for <em>native</em> synchronized OES32 telemetry frames. Each observation must be one timestamped frame with exactly 32 named, finite channel values measured at that same timestamp. Thresholds are chosen only on a separate calibration replay and frozen before held-out scoring.</p><p><strong>Evidence.</strong> The bundled demo is explicitly <strong>SYNTHETIC</strong> (deterministic generated noise, injected events, synthetic unlabeled transients). It demonstrates that the parser, calibration, replay, and metrics run; it does not establish field performance, detector superiority, a sensor mapping, or operational suitability.</p><p><strong>Companion.</strong> The candidate detector matches the OES-Resilience <code>oes32</code> definition. Related repository: <a href=\"https://github.com/sparkainlp-x/oes-resilience\">oes-resilience</a>.</p><p><strong>Limits.</strong> Offline only: no live connection, alarms or equipment control, and no field-performance claims.</p>",
   "creators": [
     {
       "name": "Brisson, Jean-François",
@@ -43,6 +44,5 @@
       "identifier": "spark-ai-nlp"
     }
   ],
-  "notes": "Evidence status: SYNTHETIC demo only. Offline replay; no field-performance claims. Commercial licensing: see COMMERCIAL-LICENSE.md.",
-  "publication_date": "2026-10-05"
+  "notes": "Evidence status: SYNTHETIC demo only. Offline replay; no field-performance claims. Commercial licensing: see COMMERCIAL-LICENSE.md."
 }
