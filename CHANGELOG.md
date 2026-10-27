@@ -4,6 +4,7 @@ All notable changes to this project. The bundled demo is SYNTHETIC; nothing here
 
 ## Unreleased
 
+- Version metadata made consistent at 0.1.1: `pyproject.toml` and `oes_telemetry_bench.__version__` (`PROJECT_VERSION`) said 0.1.0, and the README BibTeX said 0.1.0 with the concept DOI. The BibTeX now cites the v0.1.1 version DOI 10.5281/zenodo.23241694. The `v0.1.1` tag itself still contains `0.1.0` in `pyproject.toml` and `bench.py`; the tag is not moved. `reports/synthetic-demo-report.json` was generated with 0.1.0 and is left as generated (regenerating changes timing and environment fields).
 - Added the Zenodo concept DOI [10.5281/zenodo.23175492](https://doi.org/10.5281/zenodo.23175492) (v0.1.0 version DOI [10.5281/zenodo.23175493](https://doi.org/10.5281/zenodo.23175493)) to the README and `CITATION.cff`. The `v0.1.0` tag was not moved.
 
 ## 0.1.0 (2026-10-05)

@@ -97,15 +97,15 @@ The example replay is deterministic generated noise, injected events, and synthe
 ## Cite
 
 ```bibtex
-@software{oes_telemetry_bench_0_1_0,
+@software{oes_telemetry_bench_0_1_1,
   author = {Brisson, Jean-François},
   title = {oes-telemetry-bench: offline replay bench for native synchronized OES32 telemetry frames},
-  version = {0.1.0},
+  version = {0.1.1},
   year = {2026},
-  doi = {10.5281/zenodo.23175492},
+  doi = {10.5281/zenodo.23241694},
   url = {https://github.com/sparkainlp-x/oes-telemetry-bench},
   license = {AGPL-3.0-only},
-  note = {SYNTHETIC demo only; not field evidence}
+  note = {Version DOI for v0.1.1; concept DOI (all versions) 10.5281/zenodo.23175492. SYNTHETIC demo only; not field evidence}
 }
 ```
 
