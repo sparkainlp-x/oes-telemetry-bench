@@ -17,7 +17,7 @@ from typing import Any, Callable
 
 import numpy as np
 
-PROJECT_VERSION = "0.1.0"
+PROJECT_VERSION = "0.1.1"
 CHANNEL_COUNT = 32
 OES_VERSION = {
     "repository": "https://github.com/sparkainlp-x/oes-resilience",
